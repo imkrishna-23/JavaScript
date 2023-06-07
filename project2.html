@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            height: 30px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .delete-btn {
+            margin-left: 10px;
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Add a task">
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var taskList = document.getElementById("taskList");
+
+            var taskText = taskInput.value.trim();
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            var listItem = document.createElement("li");
+            listItem.textContent = taskText;
+
+            var deleteBtn = document.createElement("span");
+            deleteBtn.className = "delete-btn";
+            deleteBtn.textContent = "x";
+            deleteBtn.addEventListener("click", function () {
+                listItem.remove();
+            });
+
+            listItem.appendChild(deleteBtn);
+            taskList.appendChild(listItem);
+
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>
